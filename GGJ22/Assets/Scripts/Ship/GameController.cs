@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameController : MonoBehaviour
 {
@@ -11,9 +12,15 @@ public class GameController : MonoBehaviour
     public int Score = 0;
     public bool IsGameRunning = true;
 
+    [Header("UI")]
+    [SerializeField] TextMeshProUGUI scoreTxt;
+    [SerializeField] GameObject startBtn;
+
     public void GameStart()
     {
-
+        IsGameRunning = true;
+        startBtn.SetActive(false);
+        meteorSpawnManager.SpawnMeteor();
     }
 
 
@@ -30,7 +37,10 @@ public class GameController : MonoBehaviour
     {
         if (!IsGameRunning)
             return;
-
+        
+        Score++;
+        scoreTxt.text = Score.ToString();
+        
         Debug.Log("Ganhou um ponto!");
     }
 
