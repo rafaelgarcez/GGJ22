@@ -7,9 +7,11 @@ public class GameController : MonoBehaviour
 {
 
     [SerializeField] MeteorSpawnManager meteorSpawnManager;
+    [SerializeField] Ship ship;
 
     public bool InvertControls = false;
     public int Score = 0;
+    int swapCount = 0;
     public bool IsGameRunning = true;
 
     [Header("UI")]
@@ -29,24 +31,40 @@ public class GameController : MonoBehaviour
         if (!IsGameRunning)
             return;
 
-        meteorSpawnManager.SpawnMeteor();
+        swapCount++;
 
+        if (swapCount >= 2)
+        {
+            swapCount = 0;
+            meteorSpawnManager.SpawnSwap();
+        }
+        else
+            meteorSpawnManager.SpawnMeteor();
+
+    }
+
+    public void Swap()
+    {
+        ship.SwapColors();
+        InvertControls = !InvertControls;
     }
 
     public void AddPoint()
     {
         if (!IsGameRunning)
             return;
-        
+
         Score++;
         scoreTxt.text = Score.ToString();
-        
+
+
+
         Debug.Log("Ganhou um ponto!");
     }
 
     public void Death()
     {
-        IsGameRunning = false;
+        // IsGameRunning = false;
     }
-    
+
 }

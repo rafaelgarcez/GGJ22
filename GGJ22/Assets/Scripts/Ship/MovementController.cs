@@ -1,13 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class MovementController : MonoBehaviour
 {
     [SerializeField] GameController gameController;
-    [SerializeField] Transform ship;
+    [SerializeField] Ship ship;
     [SerializeField] float movementSpeed;
     [SerializeField] Transform[] positions;
+
+    [SerializeField] Transform blueBar;
+        
     MOTION motion;
     Transform target;
 
@@ -22,30 +26,37 @@ public class MovementController : MonoBehaviour
             moveShip();
     }
 
-    void moveShip() => ship.position = Vector2.MoveTowards(ship.position, target.position, movementSpeed * Time.deltaTime);
+    void moveShip() => ship.transform.position = Vector2.MoveTowards(ship.transform.position, target.position, movementSpeed * Time.deltaTime);
 
     void CheckDestination()
     {
-        if (motion == MOTION.LEFT && ship.position.x == positions[0].position.x)
+        if (motion == MOTION.LEFT && ship.transform.position.x == positions[0].position.x)
         {
             motion = MOTION.STOPPED;
+            ship.CenterVisual();
             return;
         }
 
-        if (motion == MOTION.CENTER && ship.position.x == positions[1].position.x)
+        if (motion == MOTION.CENTER && ship.transform.position.x == positions[1].position.x)
         {
             motion = MOTION.STOPPED;
+            ship.CenterVisual();
             return;
         }
 
-        if (motion == MOTION.RIGHT && ship.position.x == positions[2].position.x)
+        if (motion == MOTION.RIGHT && ship.transform.position.x == positions[2].position.x)
+        {
             motion = MOTION.STOPPED;
+            ship.CenterVisual();
+        }
+            
     }
 
     void GetMovement()
     {
         if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D))
         {
+            ship.CenterVisual();
             motion = MOTION.CENTER;
             target = positions[1];
             return;
@@ -74,12 +85,14 @@ public class MovementController : MonoBehaviour
 
     void MoveToRight()
     {
+        ship.RightVisual();
         motion = MOTION.RIGHT;
         target = positions[2];
     }
 
     void MoveToLeft()
     {
+        ship.LeftVisual();
         motion = MOTION.LEFT;
         target = positions[0];
     }
