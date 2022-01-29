@@ -4,27 +4,24 @@ using UnityEngine;
 
 public class Ship : MonoBehaviour
 {
+    [SerializeField] GameController gameController;
+
     void OnTriggerEnter2D(Collider2D col)
     {
         switch (col.tag)
         {
             case "Obstacle":
                 Debug.Log("Morreu!");
+                gameController.Death();
                 break;
 
             case "Point":
-                Debug.Log("Ganhou um ponto!");
+
+                gameController.AddPoint();
                 break;
 
             default:
                 break;
         }
-
-        /*
-        if (col.tag == "Obstacle")
-        {
-            Debug.Log("Colidiu!");
-        }
-        */
     }
 }

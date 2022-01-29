@@ -717,6 +717,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 663074482}
+  - component: {fileID: 663074484}
   - component: {fileID: 663074481}
   - component: {fileID: 663074483}
   m_Layer: 0
@@ -738,6 +739,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f731115731e31424bad6fa1fb730891a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameController: {fileID: 663074484}
   ship: {fileID: 1726272523}
   movementSpeed: 10
   positions:
@@ -770,9 +772,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee0b71a1d2f34914499f9f03dcca95db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameController: {fileID: 663074484}
   meteor: {fileID: 1340253660102831951, guid: dccf8d20535ba3e4f8dac22e2feea986, type: 3}
   spawnPositions:
   - {fileID: 522666328}
+--- !u!114 &663074484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 663074480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3745dd93c358ed3409058c7b4094d9e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meteorSpawnManager: {fileID: 663074483}
+  InvertControls: 0
+  Score: 0
+  IsGameRunning: 1
 --- !u!1 &714775032
 GameObject:
   m_ObjectHideFlags: 0
@@ -1439,6 +1458,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a3def61d1de2e649948516a0d8b7205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameController: {fileID: 663074484}
 --- !u!1 &1815709510
 GameObject:
   m_ObjectHideFlags: 0

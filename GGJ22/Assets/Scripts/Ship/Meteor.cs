@@ -6,9 +6,17 @@ using DG.Tweening;
 public class Meteor : MonoBehaviour
 {
 
-    public void Setup(float timeToReachBottom)
+    public void Setup(float timeToReachBottom,GameController gameController)
     {
-        transform.DOMoveY(-6.7f, timeToReachBottom).SetEase(Ease.Linear).OnComplete(() => Destroy(gameObject));
+        transform.DOMoveY(-6.7f, timeToReachBottom).SetEase(Ease.Linear).OnComplete(() => Destruction(gameController));
+    }
+
+    void Destruction(GameController gameController) 
+    {
+        gameController.MeteorReachedBottom();
+        Destroy(gameObject);
+
+
     }
 
 }

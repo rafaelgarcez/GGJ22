@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MovementController : MonoBehaviour
 {
+    [SerializeField] GameController gameController;
     [SerializeField] Transform ship;
     [SerializeField] float movementSpeed;
     [SerializeField] Transform[] positions;
@@ -12,21 +13,21 @@ public class MovementController : MonoBehaviour
 
     void Update()
     {
+        if (!gameController.IsGameRunning)
+            return;
+
         GetMovement();
         CheckDestination();
         if (motion != MOTION.STOPPED)
             moveShip();
     }
 
-    void moveShip()
-    {
-        ship.position = Vector2.MoveTowards(ship.position, target.position, movementSpeed * Time.deltaTime);
-    }
+    void moveShip() => ship.position = Vector2.MoveTowards(ship.position, target.position, movementSpeed * Time.deltaTime);
 
     void CheckDestination()
     {
         if (motion == MOTION.LEFT && ship.position.x == positions[0].position.x)
-        { 
+        {
             motion = MOTION.STOPPED;
             return;
         }
@@ -52,19 +53,36 @@ public class MovementController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.A))
         {
-            motion = MOTION.LEFT;
-            target = positions[0];
+            if (!gameController.InvertControls)
+                MoveToLeft();
+            else
+                MoveToRight();
+
             return;
         }
 
         if (Input.GetKeyDown(KeyCode.D))
         {
-            motion = MOTION.RIGHT;
-            target = positions[2];
+            if (!gameController.InvertControls)
+                MoveToRight();
+            else
+                MoveToLeft();
             return;
         }
     }
 
+
+    void MoveToRight()
+    {
+        motion = MOTION.RIGHT;
+        target = positions[2];
+    }
+
+    void MoveToLeft()
+    {
+        motion = MOTION.LEFT;
+        target = positions[0];
+    }
 
     public enum MOTION
     {
