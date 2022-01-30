@@ -24,6 +24,7 @@ public class MovementController : MonoBehaviour
 
     [SerializeField] Animator leftAnimator;
     [SerializeField] Animator rightAnimator;
+
     MOTION motion;
     Transform target;
 

@@ -15,6 +15,7 @@ public class GameController : MonoBehaviour
     [SerializeField] GameObject GameOverText;
     //  [SerializeField] SpriteRenderer flash;
     [SerializeField] Animator explosionAnimator;
+    [SerializeField] GameObject howToPlay;
 
     public bool InvertControls = false;
     public int Score = 0;
@@ -28,6 +29,7 @@ public class GameController : MonoBehaviour
 
     public void GameStart()
     {
+        howToPlay.SetActive(false);
         shipvisual.DOMoveY(-3.3f, 0.5f).From(-10f).SetEase(Ease.OutBack);
         Score = 0;
         GameOverText.SetActive(false);
