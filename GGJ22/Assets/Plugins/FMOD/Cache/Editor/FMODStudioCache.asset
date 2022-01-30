@@ -38,13 +38,36 @@ MonoBehaviour:
   Path: FMOD/GGJ22/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637791498730503929
+  lastModified: 637791566126354049
   FileSizes:
   - Name: Desktop
-    Value: 2357920
+    Value: 2364896
   - Name: Mobile
-    Value: 7255392
+    Value: 7275648
   Exists: 1
+--- !u!114 &-2158808367319439109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Explosao
+  m_EditorClassIdentifier: 
+  Path: event:/Explosao
+  guid: c697742e242e694c98160f0fcf4f3ffb
+  Banks:
+  - {fileID: -3684029568934207194}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 731
 --- !u!114 &-1783912107049376516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89,12 +112,13 @@ MonoBehaviour:
   - {fileID: 2625975241585453727}
   - {fileID: -1783912107049376516}
   - {fileID: 5777145329644205458}
+  - {fileID: -2158808367319439109}
   EditorParameters: []
   MasterBanks:
   - {fileID: -3684029568934207194}
   StringsBanks:
   - {fileID: 785166042902313226}
-  stringsBankWriteTime: 637791498730523921
+  stringsBankWriteTime: 637791566126383996
   cacheVersion: 8
 --- !u!114 &785166042902313226
 MonoBehaviour:
@@ -111,12 +135,12 @@ MonoBehaviour:
   Path: FMOD/GGJ22/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637791498730523921
+  lastModified: 637791566126383996
   FileSizes:
   - Name: Desktop
-    Value: 914
+    Value: 954
   - Name: Mobile
-    Value: 914
+    Value: 954
   Exists: 1
 --- !u!114 &2625975241585453727
 MonoBehaviour:

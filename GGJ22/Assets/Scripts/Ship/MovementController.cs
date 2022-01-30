@@ -65,8 +65,8 @@ public class MovementController : MonoBehaviour
             rightBar.color = rightSphere.color = redColor;
         }
 
-        leftBar.transform.DOScale(24, 0.15f).From(35);
-        rightBar.transform.DOScale(24, 0.15f).From(35);
+        leftAnimator.transform.DOScale(2f, 0.15f).From(5);
+        rightAnimator.transform.DOScale(2f, 0.15f).From(5);
         //swapTest = !swapTest;
 
     }

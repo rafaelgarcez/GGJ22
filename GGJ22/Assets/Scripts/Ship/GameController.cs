@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using DG.Tweening;
+using FMODUnity;
 
 public class GameController : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class GameController : MonoBehaviour
     [SerializeField] Ship ship;
     [SerializeField] Transform shipvisual;
     [SerializeField] GameObject GameOverText;
+    //  [SerializeField] SpriteRenderer flash;
+    [SerializeField] Animator explosionAnimator;
 
     public bool InvertControls = false;
     public int Score = 0;
@@ -59,6 +62,9 @@ public class GameController : MonoBehaviour
 
     public void Swap()
     {
+       // flash.gameObject.SetActive(true);
+        //flash.DOFade(0.27f, 0.2f).From(0).OnComplete(() => flash.gameObject.SetActive(false));
+        //flash.DOFade(0.27f, 0.2f).From(0).OnComplete(() => flash.DOFade(0, 0.2f).From(0.27f));
         //ship.SwapColors();
         InvertControls = !InvertControls;
         movementController.ColorSwap();
@@ -75,7 +81,11 @@ public class GameController : MonoBehaviour
 
     public void Death()
     {
+        RuntimeManager.PlayOneShot("event:/Explosao");
+        explosionAnimator.transform.position = ship.transform.position;
+        explosionAnimator.Play("Explosion");
         IsGameRunning = false;
+        //ship.gameObject.SetActive(false);
         ship.gameObject.SetActive(false);
         GameOverText.SetActive(true);
         bGM_Manager.StartMenuTheme();
