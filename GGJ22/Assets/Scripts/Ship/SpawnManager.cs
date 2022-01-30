@@ -7,15 +7,16 @@ public class SpawnManager : MonoBehaviour
 {
     [SerializeField] GameController gameController;
     [SerializeField] Meteor[] meteor;
-    [SerializeField] Meteor[] meteorShower;
-    [SerializeField] Transform[] spawnPositions;
-    [SerializeField] Transform[] meteorShowerSpawnPositions;
-    [SerializeField] Transform crateTestSpawnpoint;
+    [SerializeField] Transform spawnPosition;
     [SerializeField] GameObject swap;
-    [SerializeField] RedCrate redCrate;
+
+    public float TimeToSpawn;
+    public bool CanSpawn = true;
+    public float MeteorSpeed;
 
     public void SpawnMeteor()
     {
+        /*
         int index = Random.RandomRange(0, 2);
         switch (index)
         {
@@ -29,18 +30,39 @@ public class SpawnManager : MonoBehaviour
             default:
                 break;
         }
+        */
+    }
 
+    public void StartTimer()
+    {
+        StartCoroutine(MeteorTimer());
+    }
+
+    IEnumerator MeteorTimer()
+    {
+        while (CanSpawn && gameController.IsGameRunning)
+        {
+            SpawnSingleMeteor();
+            yield return new WaitForSeconds(TimeToSpawn);
+        }
+        
+    }
+
+    IEnumerator MeteorWaitForSeconds()
+    {
+        yield return new WaitForSeconds(0.2f);
+        StartCoroutine(MeteorTimer());
     }
 
     void SpawnSingleMeteor()
     {
 
-        int index = Random.Range(0, spawnPositions.Length);
+        int index = Random.Range(0, 3);
 
-        Meteor tempMeteor = GameObject.Instantiate(meteor[0], spawnPositions[index].position, spawnPositions[index].rotation);
+        Meteor tempMeteor = GameObject.Instantiate(meteor[index], spawnPosition.position, spawnPosition.rotation);
         MeteorSetup(tempMeteor);
     }
-
+/*
     void SpawnMeteorShower()
     {
         Meteor tempMeteor = new Meteor();
@@ -54,28 +76,30 @@ public class SpawnManager : MonoBehaviour
         MeteorSetup(tempMeteor);
 
     }
-
-    void MeteorSetup(Meteor tempMeteor) => tempMeteor.Setup(1.5f, gameController);
+*/
+    void MeteorSetup(Meteor tempMeteor) => tempMeteor.Setup(MeteorSpeed, gameController);
 
 
     public void SpawnSwap()
     {
-        GameObject tempSwap = GameObject.Instantiate(swap, spawnPositions[0].position, spawnPositions[0].rotation);
-
-        tempSwap.transform.DOMoveY(-6.7f, 1.5f).SetEase(Ease.Linear).OnComplete(() => SpawnDestroy(tempSwap));
+        CanSpawn = false;
+        GameObject tempSwap = GameObject.Instantiate(swap, spawnPosition.position, spawnPosition.rotation);
+        tempSwap.transform.DOMoveY(-6.7f, 1f).SetEase(Ease.Linear).OnComplete(() => SpawnDestroy(tempSwap));
     }
 
     void SpawnDestroy(GameObject tempSwap)
     {
         Destroy(tempSwap);
-        SpawnMeteor();
+        CanSpawn = true;
+        //StartCoroutine(MeteorTimer());
+        StartCoroutine(MeteorWaitForSeconds());
     }
-
+    /*
     public void SpawnRedCrate()
     {
         RedCrate tempRedCrate = GameObject.Instantiate(redCrate, crateTestSpawnpoint.position, crateTestSpawnpoint.rotation);
         tempRedCrate.Setup(1.5f, gameController);
          
     }
-
+    */
 }

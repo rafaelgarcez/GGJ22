@@ -16,6 +16,8 @@ public class ColorShieldController : MonoBehaviour
 
     void ShowShield(string param)
     {
+
+        /*
         switch (param)
         {
 
@@ -40,6 +42,8 @@ public class ColorShieldController : MonoBehaviour
             default:
                 break;
         }
+
+        */
     }
 
 

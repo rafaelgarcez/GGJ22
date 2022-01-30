@@ -1,5 +1,28 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-4073126393952116222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/BGM-GamePlay
+  m_EditorClassIdentifier: 
+  Path: event:/BGM-GamePlay
+  guid: f655431e40919f41a2ba5fb825764a2f
+  Banks:
+  - {fileID: -3684029568934207194}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 98665
 --- !u!114 &-3684029568934207194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15,11 +38,34 @@ MonoBehaviour:
   Path: FMOD/GGJ22/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637788913420783374
+  lastModified: 637791393938190394
   FileSizes:
   - Name: Desktop
-    Value: 1000
+    Value: 2357920
   Exists: 1
+--- !u!114 &-1783912107049376516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Fechando
+  m_EditorClassIdentifier: 
+  Path: event:/Fechando
+  guid: 340da538b5548943aaf822ee668c178d
+  Banks:
+  - {fileID: -3684029568934207194}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 531
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35,13 +81,18 @@ MonoBehaviour:
   EditorBanks:
   - {fileID: 785166042902313226}
   - {fileID: -3684029568934207194}
-  EditorEvents: []
+  EditorEvents:
+  - {fileID: 3779763426994240423}
+  - {fileID: -4073126393952116222}
+  - {fileID: 2625975241585453727}
+  - {fileID: -1783912107049376516}
+  - {fileID: 5777145329644205458}
   EditorParameters: []
   MasterBanks:
   - {fileID: -3684029568934207194}
   StringsBanks:
   - {fileID: 785166042902313226}
-  stringsBankWriteTime: 637788913421058128
+  stringsBankWriteTime: 637791393938210380
   cacheVersion: 8
 --- !u!114 &785166042902313226
 MonoBehaviour:
@@ -58,8 +109,77 @@ MonoBehaviour:
   Path: FMOD/GGJ22/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637788913421058128
+  lastModified: 637791393938210380
   FileSizes:
   - Name: Desktop
-    Value: 688
+    Value: 914
   Exists: 1
+--- !u!114 &2625975241585453727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Abrindo
+  m_EditorClassIdentifier: 
+  Path: event:/Abrindo
+  guid: 0ddbc370485ce84baf2cbe117e3f6b9c
+  Banks:
+  - {fileID: -3684029568934207194}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 531
+--- !u!114 &3779763426994240423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/BGM-Menu
+  m_EditorClassIdentifier: 
+  Path: event:/BGM-Menu
+  guid: e5281daeeb561c47b3cea67a6b573df6
+  Banks:
+  - {fileID: -3684029568934207194}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 173453
+--- !u!114 &5777145329644205458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Polaridade
+  m_EditorClassIdentifier: 
+  Path: event:/Polaridade
+  guid: fce6f28993476b4793f76e7053573692
+  Banks:
+  - {fileID: -3684029568934207194}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 649

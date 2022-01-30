@@ -6,12 +6,15 @@ using TMPro;
 public class GameController : MonoBehaviour
 {
     public MovementController movementController;
+    [SerializeField] BGM_Manager bGM_Manager;
     [SerializeField] SpawnManager meteorSpawnManager;
     [SerializeField] Ship ship;
+    [SerializeField] GameObject GameOverText;
 
     public bool InvertControls = false;
     public int Score = 0;
     int swapCount = 0;
+    int nextSwapIn = 0;
     public bool IsGameRunning = true;
 
     [Header("UI")]
@@ -20,9 +23,17 @@ public class GameController : MonoBehaviour
 
     public void GameStart()
     {
+        Score = 0;
+        GameOverText.SetActive(false);
+        nextSwapIn = Random.Range(3, 8);
         IsGameRunning = true;
         startBtn.SetActive(false);
-        //meteorSpawnManager.SpawnMeteor();
+        ship.gameObject.SetActive(true);
+        InvertControls = false;
+        scoreTxt.text = "0";
+        movementController.ResetAll();
+        meteorSpawnManager.StartTimer();
+        bGM_Manager.StopMenuTheme();
     }
 
 
@@ -33,20 +44,21 @@ public class GameController : MonoBehaviour
 
         swapCount++;
 
-        if (swapCount >= 20)
+        if (swapCount >= nextSwapIn)
         {
             swapCount = 0;
+            nextSwapIn = Random.Range(3, 8);
             meteorSpawnManager.SpawnSwap();
         }
-        else
-            meteorSpawnManager.SpawnMeteor();
+
 
     }
 
     public void Swap()
     {
-        ship.SwapColors();
+        //ship.SwapColors();
         InvertControls = !InvertControls;
+        movementController.ColorSwap();
     }
 
     public void AddPoint()
@@ -56,15 +68,23 @@ public class GameController : MonoBehaviour
 
         Score++;
         scoreTxt.text = Score.ToString();
-
-
-
-        Debug.Log("Ganhou um ponto!");
     }
 
     public void Death()
     {
-        // IsGameRunning = false;
+        IsGameRunning = false;
+        ship.gameObject.SetActive(false);
+        GameOverText.SetActive(true);
+        bGM_Manager.StartMenuTheme();
+        StartCoroutine(ShowPlay());
+    }
+
+
+    IEnumerator ShowPlay()
+    {
+        yield return new WaitForSeconds(2);
+        startBtn.SetActive(true);
+       
     }
 
 }

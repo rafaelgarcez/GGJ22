@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using System;
+using FMODUnity;
 
 public class MovementController : MonoBehaviour
 {
@@ -11,12 +12,67 @@ public class MovementController : MonoBehaviour
     [SerializeField] float movementSpeed;
     [SerializeField] Transform[] positions;
 
-    [SerializeField] Transform blueBar;
+    [SerializeField] Color32 blueColor;
+    [SerializeField] Color32 redColor;
 
     public Action<string> ButtonPressed;
-        
+
+    [SerializeField] SpriteRenderer leftSphere;
+    [SerializeField] SpriteRenderer leftBar;
+    [SerializeField] SpriteRenderer rightSphere;
+    [SerializeField] SpriteRenderer rightBar;
+
+
     MOTION motion;
     Transform target;
+
+    public void ResetAll()
+    {
+       //RuntimeManager.PlayOneShot()
+        ResetColors();
+        motion = MOTION.STOPPED;
+        ship.CenterVisual();
+        ship.transform.position = new Vector3(0, ship.transform.position.y, ship.transform.position.z);
+    }
+
+    private void Start()
+    {
+        ResetColors();       
+    }
+
+    public void SwapTest()
+    {
+        ColorSwap();
+            
+    }
+
+     public void ColorSwap()
+    {
+        RuntimeManager.PlayOneShot("event:/Polaridade");
+        if (gameController.InvertControls)
+        {
+            leftBar.color = leftSphere.color = redColor;
+            rightBar.color = rightSphere.color = blueColor;
+        }
+        else
+        {
+            leftSphere.color = leftBar.color = blueColor;
+            rightBar.color = rightSphere.color = redColor;
+        }
+
+        leftBar.transform.DOScale(24, 0.15f).From(35);
+        rightBar.transform.DOScale(24, 0.15f).From(35);
+        //swapTest = !swapTest;
+
+    }
+
+    void ResetColors()
+    {
+        leftSphere.color = blueColor;
+        leftBar.color = blueColor;
+
+        rightBar.color = rightSphere.color = redColor;
+    }
 
     void Update()
     {
@@ -63,6 +119,8 @@ public class MovementController : MonoBehaviour
             motion = MOTION.CENTER;
             target = positions[1];
             ButtonPressed?.Invoke("Center");
+            AnimateSphere(rightSphere.transform);
+            AnimateSphere(leftSphere.transform);
             return;
         }
 
@@ -73,7 +131,8 @@ public class MovementController : MonoBehaviour
             else
                 MoveToRight();
 
-            ButtonPressed?.Invoke("Red");
+            //ButtonPressed?.Invoke("blue");
+            AnimateSphere(leftSphere.transform);
 
             return;
         }
@@ -85,7 +144,8 @@ public class MovementController : MonoBehaviour
             else
                 MoveToLeft();
 
-            ButtonPressed?.Invoke("Blue");
+           // ButtonPressed?.Invoke("red");
+            AnimateSphere(rightSphere.transform);
             return;
         }
     }
@@ -93,6 +153,7 @@ public class MovementController : MonoBehaviour
 
     void MoveToRight()
     {
+        RuntimeManager.PlayOneShot("event:/Abrindo");
         ship.RightVisual();
         motion = MOTION.RIGHT;
         target = positions[2];
@@ -100,10 +161,18 @@ public class MovementController : MonoBehaviour
 
     void MoveToLeft()
     {
+        RuntimeManager.PlayOneShot("event:/Fechando");
         ship.LeftVisual();
         motion = MOTION.LEFT;
         target = positions[0];
     }
+
+    void AnimateSphere(Transform Sphere)
+    {
+        Sphere.gameObject.SetActive(true);
+        Sphere.DOScale(0.2661003f, 0.15f).From(0).OnComplete(() => Sphere.gameObject.SetActive(false));
+    }
+
 
     public enum MOTION
     {

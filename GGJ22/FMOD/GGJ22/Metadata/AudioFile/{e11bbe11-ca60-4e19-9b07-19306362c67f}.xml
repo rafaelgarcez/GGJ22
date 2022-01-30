@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="AudioFile" id="{e11bbe11-ca60-4e19-9b07-19306362c67f}">
+		<property name="assetPath">
+			<value>Musica_nave_gameplay.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>100.41469387755102</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{fc3a3f69-167b-4305-aa8a-b18899bc14b3}</destination>
+		</relationship>
+	</object>
+</objects>
