@@ -16,7 +16,6 @@ public class Meteor : MonoBehaviour
         gameController.MeteorReachedBottom();
         Destroy(gameObject);
 
-
     }
 
 }

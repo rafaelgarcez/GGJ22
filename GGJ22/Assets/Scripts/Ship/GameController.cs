@@ -5,8 +5,8 @@ using TMPro;
 
 public class GameController : MonoBehaviour
 {
-
-    [SerializeField] MeteorSpawnManager meteorSpawnManager;
+    public MovementController movementController;
+    [SerializeField] SpawnManager meteorSpawnManager;
     [SerializeField] Ship ship;
 
     public bool InvertControls = false;
@@ -22,7 +22,7 @@ public class GameController : MonoBehaviour
     {
         IsGameRunning = true;
         startBtn.SetActive(false);
-        meteorSpawnManager.SpawnMeteor();
+        //meteorSpawnManager.SpawnMeteor();
     }
 
 
@@ -33,7 +33,7 @@ public class GameController : MonoBehaviour
 
         swapCount++;
 
-        if (swapCount >= 2)
+        if (swapCount >= 20)
         {
             swapCount = 0;
             meteorSpawnManager.SpawnSwap();

@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class MeteorSpawnManager : MonoBehaviour
+public class SpawnManager : MonoBehaviour
 {
     [SerializeField] GameController gameController;
     [SerializeField] Meteor[] meteor;
     [SerializeField] Meteor[] meteorShower;
     [SerializeField] Transform[] spawnPositions;
     [SerializeField] Transform[] meteorShowerSpawnPositions;
+    [SerializeField] Transform crateTestSpawnpoint;
     [SerializeField] GameObject swap;
-    
+    [SerializeField] RedCrate redCrate;
 
     public void SpawnMeteor()
     {
@@ -70,5 +71,11 @@ public class MeteorSpawnManager : MonoBehaviour
         SpawnMeteor();
     }
 
+    public void SpawnRedCrate()
+    {
+        RedCrate tempRedCrate = GameObject.Instantiate(redCrate, crateTestSpawnpoint.position, crateTestSpawnpoint.rotation);
+        tempRedCrate.Setup(1.5f, gameController);
+         
+    }
 
 }

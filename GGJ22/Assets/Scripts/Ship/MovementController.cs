@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using System;
 
 public class MovementController : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class MovementController : MonoBehaviour
     [SerializeField] Transform[] positions;
 
     [SerializeField] Transform blueBar;
+
+    public Action<string> ButtonPressed;
         
     MOTION motion;
     Transform target;
@@ -59,6 +62,7 @@ public class MovementController : MonoBehaviour
             ship.CenterVisual();
             motion = MOTION.CENTER;
             target = positions[1];
+            ButtonPressed?.Invoke("Center");
             return;
         }
 
@@ -69,6 +73,8 @@ public class MovementController : MonoBehaviour
             else
                 MoveToRight();
 
+            ButtonPressed?.Invoke("Red");
+
             return;
         }
 
@@ -78,6 +84,8 @@ public class MovementController : MonoBehaviour
                 MoveToRight();
             else
                 MoveToLeft();
+
+            ButtonPressed?.Invoke("Blue");
             return;
         }
     }
