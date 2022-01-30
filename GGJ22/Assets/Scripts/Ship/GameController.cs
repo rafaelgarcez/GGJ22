@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using DG.Tweening;
 
 public class GameController : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class GameController : MonoBehaviour
     [SerializeField] BGM_Manager bGM_Manager;
     [SerializeField] SpawnManager meteorSpawnManager;
     [SerializeField] Ship ship;
+    [SerializeField] Transform shipvisual;
     [SerializeField] GameObject GameOverText;
 
     public bool InvertControls = false;
@@ -23,6 +25,7 @@ public class GameController : MonoBehaviour
 
     public void GameStart()
     {
+        shipvisual.DOMoveY(-3.3f, 0.5f).From(-10f).SetEase(Ease.OutBack);
         Score = 0;
         GameOverText.SetActive(false);
         nextSwapIn = Random.Range(3, 8);

@@ -22,7 +22,8 @@ public class MovementController : MonoBehaviour
     [SerializeField] SpriteRenderer rightSphere;
     [SerializeField] SpriteRenderer rightBar;
 
-
+    [SerializeField] Animator leftAnimator;
+    [SerializeField] Animator rightAnimator;
     MOTION motion;
     Transform target;
 
@@ -53,9 +54,13 @@ public class MovementController : MonoBehaviour
         {
             leftBar.color = leftSphere.color = redColor;
             rightBar.color = rightSphere.color = blueColor;
+            leftAnimator.Play("RedStatic");
+            rightAnimator.Play("BlueStatic");
         }
         else
         {
+            leftAnimator.Play("BlueStatic");
+            rightAnimator.Play("RedStatic");
             leftSphere.color = leftBar.color = blueColor;
             rightBar.color = rightSphere.color = redColor;
         }
@@ -72,6 +77,8 @@ public class MovementController : MonoBehaviour
         leftBar.color = blueColor;
 
         rightBar.color = rightSphere.color = redColor;
+        leftAnimator.Play("BlueStatic");
+        rightAnimator.Play("RedStatic");
     }
 
     void Update()
@@ -121,17 +128,36 @@ public class MovementController : MonoBehaviour
             ButtonPressed?.Invoke("Center");
             AnimateSphere(rightSphere.transform);
             AnimateSphere(leftSphere.transform);
-            return;
+
+            if (!gameController.InvertControls)
+            {
+                leftAnimator.Play("BlueOpen");
+                rightAnimator.Play("RedOpen");
+            }
+            else
+            {
+                leftAnimator.Play("RedOpen");
+                rightAnimator.Play("BlueOpen");
+            }
+
+
+                return;
         }
 
         if (Input.GetKeyDown(KeyCode.A))
         {
             if (!gameController.InvertControls)
+            {
+                leftAnimator.Play("BlueOpen");
                 MoveToLeft();
-            else
-                MoveToRight();
+            }
 
-            //ButtonPressed?.Invoke("blue");
+            else
+            {
+                leftAnimator.Play("RedOpen");
+                MoveToRight();
+            }
+
             AnimateSphere(leftSphere.transform);
 
             return;
@@ -140,9 +166,16 @@ public class MovementController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.D))
         {
             if (!gameController.InvertControls)
+            {
+                rightAnimator.Play("RedOpen");
                 MoveToRight();
+            }
             else
+            {
+                rightAnimator.Play("BlueOpen");
                 MoveToLeft();
+            }
+                
 
            // ButtonPressed?.Invoke("red");
             AnimateSphere(rightSphere.transform);
@@ -161,7 +194,7 @@ public class MovementController : MonoBehaviour
 
     void MoveToLeft()
     {
-        RuntimeManager.PlayOneShot("event:/Fechando");
+        RuntimeManager.PlayOneShot("event:/Abrindo");
         ship.LeftVisual();
         motion = MOTION.LEFT;
         target = positions[0];

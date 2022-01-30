@@ -38,10 +38,12 @@ MonoBehaviour:
   Path: FMOD/GGJ22/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637791393938190394
+  lastModified: 637791498730503929
   FileSizes:
   - Name: Desktop
     Value: 2357920
+  - Name: Mobile
+    Value: 7255392
   Exists: 1
 --- !u!114 &-1783912107049376516
 MonoBehaviour:
@@ -92,7 +94,7 @@ MonoBehaviour:
   - {fileID: -3684029568934207194}
   StringsBanks:
   - {fileID: 785166042902313226}
-  stringsBankWriteTime: 637791393938210380
+  stringsBankWriteTime: 637791498730523921
   cacheVersion: 8
 --- !u!114 &785166042902313226
 MonoBehaviour:
@@ -109,9 +111,11 @@ MonoBehaviour:
   Path: FMOD/GGJ22/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637791393938210380
+  lastModified: 637791498730523921
   FileSizes:
   - Name: Desktop
+    Value: 914
+  - Name: Mobile
     Value: 914
   Exists: 1
 --- !u!114 &2625975241585453727
